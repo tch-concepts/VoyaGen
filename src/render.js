@@ -520,8 +520,7 @@ async function init(forceReload = false) {
     }
 }
 
-// 頁面加載完成後執行
-document.addEventListener('DOMContentLoaded', init);
+// 頁面載入由 Router 來控制是否執行 initItineraryView，不再預設載入範本
 window.initItineraryView = init;
 window.getItineraryData = () => itineraryData;
 window.renderItineraryData = (data) => {

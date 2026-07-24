@@ -91,7 +91,7 @@ function handleHashChange() {
     } else if (urlParams.has('data')) {
         navigateTo('viewer');
     } else {
-        navigateTo('dashboard');
+        navigateTo('generator');
     }
 }
 
