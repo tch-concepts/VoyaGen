@@ -271,6 +271,7 @@ details summary::-webkit-details-marker { display: none; }
 .brand-logo-text {
     background: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
     -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-weight: 900 !important;
     letter-spacing: -0.03em !important;

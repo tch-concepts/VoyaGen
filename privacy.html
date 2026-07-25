@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoyaGen - 隱私權政策</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        /* VoyaGen 品牌 Logo 極簡中性鈦黑樣式 */
+        .brand-logo-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.03em !important;
+        }
+        .brand-logo-icon {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18) !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 min-h-screen flex flex-col justify-between">
+
+    <!-- App Header & Navigation Bar (Frosted Glassmorphism Bar) -->
+    <nav class="bg-white/75 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-16">
+            <!-- Brand Logo (靜態展示) -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl brand-logo-icon flex items-center justify-center text-white">
+                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                </div>
+                <span class="text-2xl brand-logo-text">VoyaGen</span>
+            </div>
+
+            <!-- Single Close Action Button -->
+            <div>
+                <a href="index.html" onclick="if(window.opener) { window.close(); return false; }" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 shadow-sm transition-all">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                    <span>關閉此頁</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-3xl w-full mx-auto px-6 py-12">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-xl p-8 md:p-10 space-y-8">
+            <div>
+                <h1 class="text-3xl font-black text-slate-900 mb-3 tracking-tight">隱私權政策</h1>
+                <p class="text-xs text-slate-400">最後更新日期：2026 年 7 月 25 日</p>
+            </div>
+
+            <p class="text-sm leading-relaxed text-slate-600">
+                歡迎使用 <strong>VoyaGen</strong>！我們非常重視您的隱私，因此我們將本應用程式設計為一個完全<strong>無伺服器</strong>運作的前端靜態工具。這意味著您的所有資料都掌握在您自己手中。以下是我們的隱私權說明：
+            </p>
+
+            <hr class="border-slate-100">
+
+            <!-- Section 1 -->
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-server text-indigo-600 text-base"></i>
+                    <span>1. 我們不收集任何資料</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    VoyaGen 沒有任何後端資料庫或伺服器。我們<strong>不會收集、不會儲存、也不會分析</strong>您的行程內容、Google 帳號資訊、對話記錄或任何個人身分資料。本專案的程式碼完全開源於 GitHub，接受公開檢視。
+                </p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-cloud-arrow-up text-indigo-600 text-base"></i>
+                    <span>2. 資料儲存與存取 (Google Drive)</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    當您連結 Google 帳號後，您建立的所有行程檔案均直接且唯一儲存在您個人的 <strong>Google 雲端硬碟 (Google Drive)</strong> 中。我們僅申請並使用 <code>drive.file</code> 權限範圍，這代表 VoyaGen 僅能讀取與寫入「由 VoyaGen 建立或開啟的特定檔案」，無權且無法存取您雲端硬碟中的其他任何私密檔案。
+                </p>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-key text-indigo-600 text-base"></i>
+                    <span>3. Google 帳號授權與驗證</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    VoyaGen 使用 Google 官方的安全登入 SDK (Google Identity Services)。當您進行登入授權時，登入憑證的驗證均直接在 Google 的安全網域內完成。VoyaGen 在瀏覽器端僅會獲取臨時的存取權杖 (Access Token) 以呼叫 Google APIs。此權杖僅留存於您的本機記憶體中，關閉網頁或登出後即失效，絕不會傳送給任何第三方。
+                </p>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-robot text-indigo-600 text-base"></i>
+                    <span>4. AI 行程生成服務 (Gemini)</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    本網站的 AI 行程規劃功能是透過 Google 提供的 Gemini API 服務完成。您輸入的行程目的地與描述，將直接送往 Google 伺服器進行 AI 生成。這項過程同樣完全由您的 Google 登入帳號授權（或您自行設定的專屬中繼服務）直接與 Google API 進行通信，VoyaGen 亦不會轉載或存檔這些對話。
+                </p>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="space-y-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-envelope text-indigo-600 text-base"></i>
+                    <span>5. 聯絡我們</span>
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-500">
+                    如果您對本應用程式的隱私政策或程式碼運作方式有任何疑問，歡迎隨時透過以下電子郵件與我們聯絡：
+                    <a href="mailto:tch-concepts@googlegroups.com" class="text-indigo-600 hover:text-indigo-800 font-bold block mt-1">
+                        <i class="fa-regular fa-envelope"></i> tch-concepts@googlegroups.com
+                    </a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-slate-200 bg-white text-center text-xs text-slate-400">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+                © 2026 TCH Concepts. All rights reserved.
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="privacy.html" class="hover:text-slate-600">隱私權政策</a>
+                <span>|</span>
+                <a href="mailto:tch-concepts@googlegroups.com" class="hover:text-slate-600">聯絡支援</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
