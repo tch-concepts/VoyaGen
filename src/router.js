@@ -1,17 +1,17 @@
 /**
  * VoyaGen SPA 輕量前端路由器 (Router)
- * 管理 Login, Dashboard, Generator, Viewer 視圖切換
+ * 管理 About, Dashboard, Generator, Viewer 視圖切換
  */
 
 const routes = {
-    'login': 'view-login',
+    'about': 'view-about',
     'dashboard': 'view-dashboard',
     'generator': 'view-generator',
     'viewer': 'view-viewer'
 };
 
 function navigateTo(routeName) {
-    const targetRoute = routes[routeName] ? routeName : 'viewer';
+    const targetRoute = routes[routeName] ? routeName : 'about';
     
     // 更新 URL Hash (若非預設或有 data 參數時適度處理)
     if (window.location.hash !== `#${targetRoute}`) {
@@ -36,8 +36,8 @@ function navigateTo(routeName) {
         document.title = "VoyaGen - 我的行程庫";
     } else if (targetRoute === 'generator') {
         document.title = "VoyaGen - AI 旅遊規劃師";
-    } else if (targetRoute === 'login') {
-        document.title = "VoyaGen - 歡迎使用";
+    } else if (targetRoute === 'about') {
+        document.title = "VoyaGen - 關於本程式";
     }
 
     // 若非行程檢視頁，關閉 AI 對話助理側邊欄並重置主題
@@ -48,7 +48,12 @@ function navigateTo(routeName) {
         if (typeof window.applyTheme === 'function') {
             window.applyTheme({
                 accent_primary: '#0284c7',
-                btn_gradient_from: '#0284c7'
+                accent_gradient_from: '#0284c7',
+                accent_gradient_to: '#06b6d4',
+                banner_image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80',
+                banner_position: 'center',
+                banner_overlay: 'rgba(15, 23, 42, 0.45)',
+                theme_card_border: 'rgba(241, 245, 249, 0.9)'
             });
         }
     }
@@ -68,15 +73,14 @@ function navigateTo(routeName) {
         window.initItineraryView();
     }
 
-    // 更新導覽列 Active 狀態 (深海星藍底線樣式)
+    // 更新導覽列 Active 狀態
     document.querySelectorAll('.nav-link').forEach(link => {
-        const linkRoute = link.getAttribute('data-route');
-        if (linkRoute === targetRoute) {
-            link.classList.add('text-blue-700', 'border-b-2', 'border-blue-600', 'font-bold');
-            link.classList.remove('text-slate-600', 'hover:text-slate-900', 'bg-sky-50/80');
+        if (link.getAttribute('data-route') === targetRoute) {
+            link.classList.add('text-indigo-600', 'bg-indigo-50/80', 'font-bold');
+            link.classList.remove('text-slate-600', 'hover:bg-slate-100/80');
         } else {
-            link.classList.remove('text-blue-700', 'border-b-2', 'border-blue-600', 'font-bold', 'bg-sky-50/80');
-            link.classList.add('text-slate-600', 'hover:text-slate-900');
+            link.classList.remove('text-indigo-600', 'bg-indigo-50/80', 'font-bold');
+            link.classList.add('text-slate-600', 'hover:bg-slate-100/80');
         }
     });
 }
@@ -91,7 +95,7 @@ function handleHashChange() {
     } else if (urlParams.has('data')) {
         navigateTo('viewer');
     } else {
-        navigateTo('generator');
+        navigateTo('about');
     }
 }
 

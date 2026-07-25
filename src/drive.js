@@ -222,14 +222,28 @@ async function renderDashboard() {
 
     if (!voyaAuth.isLoggedIn()) {
         container.innerHTML = `
-            <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center bg-white/50 col-span-full">
-                <div class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-3 text-lg">
+            <div class="border-2 border-dashed border-slate-200 rounded-3xl p-8 md:p-10 text-center bg-white/50 col-span-full">
+                <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-4 text-xl">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
-                <h3 class="font-bold text-slate-800 text-base mb-1">尚未連結 Google Drive 帳號</h3>
-                <p class="text-xs text-slate-500 max-w-md mx-auto mb-2">登入 Google 帳號授權後，系統將為您建立專屬行程雲端資料夾，並列出所有行程。</p>
-                <p class="text-[10px] text-amber-600 max-w-md mx-auto mb-4 leading-normal">⚠️ 本專案為開源工具，目前未提交 Google 官方審核。登入時會跳出安全警告。如有疑慮請勿登入；如欲繼續使用，可於警告頁面點選「進階 ➡️ 前往 VoyaGen (不安全)」進行授權。</p>
-                <button onclick="voyaAuth.login()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all">
+                <h3 class="font-black text-slate-900 text-2xl mb-2">尚未連結 Google Drive 帳號</h3>
+                <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">登入 Google 帳號授權後，系統將為您建立專屬行程雲端資料夾，並列出所有行程。</p>
+                
+                <!-- Warning Banner -->
+                <div class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-left text-xs text-amber-800 space-y-1.5 leading-relaxed max-w-md mx-auto">
+                    <div class="font-bold flex items-center gap-1.5 text-amber-900 text-sm">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>安全性說明與提示</span>
+                    </div>
+                    <p>
+                        ⚠️ <strong>未經過 Google 驗證提示</strong>：本應用程式目前未向 Google 提交正式審核（受限於 Google 針對 Google Drive 存取權限的複雜驗證門檻）。
+                    </p>
+                    <p>
+                        當您點擊下方登入時，Google 會顯示「此應用程式未經 Google 驗證」的安全警示畫面。<strong>如果您有任何疑慮，請勿登入授權。</strong>如欲繼續使用，請點選該畫面左下角的「<strong>進階 (Advanced)</strong>」，並選擇「<strong>前往 VoyaGen (不安全)</strong>」以完成授權。
+                    </p>
+                </div>
+
+                <button onclick="voyaAuth.login()" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-md">
                     立即登入 Google 帳號
                 </button>
             </div>

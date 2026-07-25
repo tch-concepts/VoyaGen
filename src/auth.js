@@ -143,7 +143,7 @@ function logout() {
 
     updateAuthUI();
     if (typeof navigateTo === 'function') {
-        navigateTo('login');
+        navigateTo('about');
     }
 }
 

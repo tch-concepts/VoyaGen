@@ -44,6 +44,10 @@
                     <i class="fa-solid fa-route text-slate-700"></i>
                     <span class="hidden sm:inline">AI 旅遊規劃師</span>
                 </button>
+                <button onclick="navigateTo('about')" data-route="about" class="nav-link px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="hidden sm:inline">關於本程式</span>
+                </button>
                 <div class="relative">
                     <button id="user-menu-btn" onclick="voyaAuth.handleUserButtonClick()" class="w-9 h-9 rounded-full bg-slate-100/90 hover:bg-slate-200/90 text-slate-700 font-semibold transition-all flex items-center justify-center border border-slate-200/80 shadow-sm text-sm" title="使用者選單">
                         <span id="nav-user-icon" class="flex items-center justify-center">
@@ -67,15 +71,15 @@
                                 <span>登出帳號</span>
                             </button>
                         </div>
-                        <div class="border-t border-slate-100 mt-2.5 pt-2 flex flex-col gap-1 text-[11px] text-slate-400 font-medium">
+                        <div class="border-t border-slate-100 mt-2.5 pt-2 flex flex-col gap-1 text-xs text-slate-400 font-medium">
                             <a href="javascript:void(0)" onclick="window.open('privacy.html', '_blank')" class="hover:text-slate-600 px-2 py-0.5 rounded transition-colors flex items-center gap-1.5">
-                                <i class="fa-solid fa-shield-halved fa-fw text-[10px]"></i> 隱私權政策
+                                <i class="fa-solid fa-shield-halved fa-fw"></i> 隱私權政策
                             </a>
                             <a href="javascript:void(0)" onclick="window.open('terms.html', '_blank')" class="hover:text-slate-600 px-2 py-0.5 rounded transition-colors flex items-center gap-1.5">
-                                <i class="fa-solid fa-file-contract fa-fw text-[10px]"></i> 服務條款
+                                <i class="fa-solid fa-file-contract fa-fw"></i> 服務條款
                             </a>
                             <a href="mailto:tch-concepts@googlegroups.com" class="hover:text-slate-600 px-2 py-0.5 rounded transition-colors flex items-center gap-1.5">
-                                <i class="fa-regular fa-envelope fa-fw text-[10px]"></i> 聯絡支援
+                                <i class="fa-regular fa-envelope fa-fw"></i> 聯絡我們
                             </a>
                         </div>
                     </div>
@@ -129,14 +133,28 @@
             </div>
 
             <div id="dashboard-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center bg-white/50 col-span-full">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-3 text-lg">
+                <div class="border-2 border-dashed border-slate-200 rounded-3xl p-8 md:p-10 text-center bg-white/50 col-span-full">
+                    <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mx-auto mb-4 text-xl">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                     </div>
-                    <h3 class="font-bold text-slate-800 text-base mb-1">尚未連結 Google Drive 帳號</h3>
-                    <p class="text-xs text-slate-500 max-w-md mx-auto mb-2">登入 Google 帳號授權後，系統將為您建立專屬行程雲端資料夾，並列出所有行程。</p>
-                    <p class="text-[10px] text-amber-600 max-w-md mx-auto mb-4 leading-normal">⚠️ 本專案為開源工具，目前未提交 Google 官方審核。登入時會跳出安全警告。如有疑慮請勿登入；如欲繼續使用，可於警告頁面點選「進階 ➡️ 前往 VoyaGen (不安全)」進行授權。</p>
-                    <button onclick="voyaAuth.login()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all">
+                    <h3 class="font-black text-slate-900 text-2xl mb-2">尚未連結 Google Drive 帳號</h3>
+                    <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">登入 Google 帳號授權後，系統將為您建立專屬行程雲端資料夾，並列出所有行程。</p>
+                    
+                    <!-- Warning Banner -->
+                    <div class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-left text-xs text-amber-800 space-y-1.5 leading-relaxed max-w-md mx-auto">
+                        <div class="font-bold flex items-center gap-1.5 text-amber-900 text-sm">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>安全性說明與提示</span>
+                        </div>
+                        <p>
+                            ⚠️ <strong>未經過 Google 驗證提示</strong>：本應用程式目前未向 Google 提交正式審核（受限於 Google 針對 Google Drive 存取權限的複雜驗證門檻）。
+                        </p>
+                        <p>
+                            當您點擊下方登入時，Google 會顯示「此應用程式未經 Google 驗證」的安全警示畫面。<strong>如果您有任何疑慮，請勿登入授權。</strong>如欲繼續使用，請點選該畫面左下角的「<strong>進階 (Advanced)</strong>」，並選擇「<strong>前往 VoyaGen (不安全)</strong>」以完成授權。
+                        </p>
+                    </div>
+
+                    <button onclick="voyaAuth.login()" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-md">
                         立即登入 Google 帳號
                     </button>
                 </div>
@@ -188,46 +206,71 @@
                         <i id="gen-spinner" class="fa-solid fa-spinner fa-spin hidden text-lg"></i>
                         <i class="fa-solid fa-robot"></i>
                         <span id="gen-submit-text">開始規劃行程</span>
-                    </button>
                 </form>
-
-                <!-- 應用程式用途說明 (Google 審查與使用者信任說明) -->
-                <div class="mt-6 pt-4 border-t border-slate-100 text-center text-xs text-slate-400 leading-relaxed">
-                    <p class="font-bold text-slate-500 mb-1">關於 VoyaGen 旅遊規劃師</p>
-                    <p>
-                        VoyaGen 是一款完全開源、無伺服器的 AI 旅遊規劃助理。本網頁透過 Google Gemini AI 協助您自動規劃旅遊景點與日程，並將規劃好的行程檔案安全地儲存在您個人的 Google 雲端硬碟中，保障您的資料隱私。
-                    </p>
-                </div>
             </div>
         </div>
 
-        <!-- View 3: Login (Google 登入與 Client ID 設定) -->
-        <div id="view-login" class="app-view max-w-5xl mx-auto px-4 py-12 hidden">
-            <div class="max-w-md mx-auto space-y-6">
+        <!-- View 3: About & Login (關於本程式與登入帳號) -->
+        <div id="view-about" class="app-view max-w-5xl mx-auto px-4 py-12 hidden">
+            <div class="max-w-2xl mx-auto space-y-8">
+                <!-- 關於本程式資訊卡片 (永遠顯示) -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl p-8 md:p-10 space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left border-b border-slate-100 pb-6">
+                        <div class="w-16 h-16 rounded-2xl brand-logo-icon flex items-center justify-center text-white text-3xl shadow-lg">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-black text-slate-900 tracking-tight">VoyaGen</h2>
+                            <p class="text-sm text-indigo-600 font-bold tracking-wider mt-0.5">開源、完全無伺服器的 AI 旅遊規劃助理</p>
+                        </div>
+                    </div>
 
-                <!-- 尚未登入卡片 -->
-                <div id="login-card-not-auth" class="bg-white rounded-2xl border border-slate-100 shadow-md p-8 text-center">
-                    <div class="w-16 h-16 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mx-auto mb-4 shadow-lg text-2xl">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </div>
-                    <h2 class="text-2xl font-black text-slate-900 mb-2">歡迎使用 VoyaGen</h2>
-                    <div class="text-sm text-slate-500 mb-5 text-left bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
-                        <p class="font-bold text-slate-700">📌 應用程式用途說明 (App Purpose)：</p>
-                        <p class="leading-relaxed text-xs">
-                            VoyaGen 是一款完全開源、無伺服器的 AI 旅遊規劃助理。本網頁透過 Google Gemini AI 協助您自動規劃旅遊景點與日程，並將規劃好的行程檔案直接且安全地儲存在您個人的 Google 雲端硬碟中，便於您隨時管理與修改。
+                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                        <p>
+                            VoyaGen 是一款精心設計的靜態網頁旅遊規劃工具。我們整合了 <strong>Google Gemini AI</strong> 與 <strong>Google Drive 雲端儲存服務</strong>，為您打造極速、安全的行程編排體驗。
                         </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+                                <h4 class="font-bold text-slate-800 flex items-center gap-2 text-xs">
+                                    <i class="fa-solid fa-server text-indigo-600"></i> 完全無伺服器 (Serverless)
+                                </h4>
+                                <p class="text-xs text-slate-500">所有程式碼都在您的瀏覽器端運行，我們絕不收集、也無法獲取您的行程與個資。</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
+                                <h4 class="font-bold text-slate-800 flex items-center gap-2 text-xs">
+                                    <i class="fa-solid fa-cloud-arrow-up text-indigo-600"></i> Google Drive 本地存取
+                                </h4>
+                                <p class="text-xs text-slate-500">採用 drive.file 最小權限範圍，僅能讀寫 VoyaGen 建立的特定檔案，安全有保障。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-slate-100 space-y-3">
+                            <h4 class="font-bold text-slate-800 flex items-center gap-2 text-sm">
+                                <i class="fa-solid fa-code text-indigo-600"></i> 關於開發者 & 開源貢獻
+                            </h4>
+                            <p class="text-xs text-slate-500">
+                                本專案由開發者 <strong>T.C.</strong> 設計與維護，專案代碼完全公開於 GitHub。如果您在使用過程中遇到任何疑問，或需要進行 Google OAuth 同意畫面審核諮詢，歡迎聯絡我們：
+                                <a href="mailto:tch-concepts@googlegroups.com" class="text-indigo-600 hover:text-indigo-800 font-bold block mt-1">
+                                    <i class="fa-regular fa-envelope"></i> tch-concepts@googlegroups.com
+                                </a>
+                            </p>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-400 mb-5">登入 Google 帳號以直接存取您的 Google Drive 專屬行程檔並使用 Gemini AI 生成功能</p>
+                </div>
+
+                <!-- 尚未登入狀態卡片 (動態控制) -->
+                <div id="login-card-not-auth" class="bg-white rounded-3xl border border-slate-100 shadow-xl p-8 text-center space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">開始連結您的 Google 帳號</h3>
+                        <p class="text-xs text-slate-400">登入後即可隨時隨地同步與儲存您的旅遊行程</p>
+                    </div>
 
                     <!-- Warning Banner -->
-                    <div class="mb-5 p-4 rounded-xl bg-amber-50 border border-amber-200 text-left text-xs text-amber-800 space-y-1.5 leading-relaxed">
-                        <div class="font-bold flex items-center gap-1 text-sm text-amber-900">
+                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-left text-xs text-amber-800 space-y-1.5 leading-relaxed">
+                        <div class="font-bold flex items-center gap-1.5 text-amber-900 text-sm">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             <span>安全性說明與提示</span>
                         </div>
-                        <p>
-                            本專案為完全開源、無伺服器的靜態網頁工具，代碼皆運行於您的瀏覽器中，本站絕不會、也無法收集您的任何隱私資料。
-                        </p>
                         <p>
                             ⚠️ <strong>未經過 Google 驗證提示</strong>：本應用程式目前未向 Google 提交正式審核（受限於 Google 針對 Google Drive 存取權限的複雜驗證門檻）。
                         </p>
@@ -241,30 +284,43 @@
                         <span>連結 Google 帳號授權登入</span>
                     </button>
 
-                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-center gap-3 text-xs text-slate-400 font-medium">
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-center gap-3 text-xs text-slate-400 font-medium">
                         <a href="privacy.html" class="hover:text-slate-600 transition-colors">隱私權政策</a>
                         <span>•</span>
                         <a href="terms.html" class="hover:text-slate-600 transition-colors">服務條款</a>
                         <span>•</span>
                         <a href="mailto:tch-concepts@googlegroups.com" class="hover:text-slate-600 transition-colors flex items-center gap-1">
                             <i class="fa-regular fa-envelope text-[10px]"></i>
-                            <span>聯絡支援</span>
+                            <span>聯絡我們</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- 已登入卡片 -->
-                <div id="login-card-auth" class="bg-white rounded-2xl border border-slate-100 shadow-md p-8 text-center hidden">
-                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 text-2xl">
+                <!-- 已登入狀態卡片 (動態控制) -->
+                <div id="login-card-auth" class="bg-white rounded-3xl border border-slate-100 shadow-xl p-8 text-center space-y-6 hidden">
+                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl shadow-inner">
                         <i class="fa-solid fa-circle-check"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-slate-900 mb-1">Google 帳號已成功連結！</h2>
-                    <p class="text-xs text-slate-500 mb-6">您現在可以存取 Google Drive 中的行程檔並使用 Gemini AI 直連生成。</p>
-                    <button onclick="voyaAuth.logout()" class="bg-rose-50 text-rose-600 hover:bg-rose-100 font-bold px-5 py-2.5 rounded-xl transition-all text-sm">
-                        登出帳號
-                    </button>
-                </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 mb-1">Google 帳號已成功連結！</h2>
+                        <p class="text-xs text-slate-500">您現在可以順暢讀寫雲端硬碟檔案，並直接使用 Gemini AI 進行行程規劃。</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                        <button onclick="navigateTo('generator')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-xl transition-all text-xs flex items-center justify-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-route"></i> 開始 AI 行程規劃
+                        </button>
+                        <button onclick="navigateTo('dashboard')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-6 py-3 rounded-xl transition-all text-xs flex items-center justify-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-compass"></i> 前往我的行程庫
+                        </button>
+                    </div>
 
+                    <div class="pt-4 border-t border-slate-100">
+                        <button onclick="voyaAuth.logout()" class="text-xs text-rose-600 hover:text-rose-800 font-bold flex items-center gap-1 mx-auto hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-all">
+                            <i class="fa-solid fa-right-from-bracket"></i> 登出帳號
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
