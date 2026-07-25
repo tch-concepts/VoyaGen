@@ -95,23 +95,23 @@
                 </div>
             </div>
 
-            <!-- 批次操作工具列 (預設隱藏，勾選檔案時顯示) -->
-            <div id="dashboard-batch-bar" class="hidden mb-4 p-3 bg-slate-100/90 border border-slate-200 rounded-xl flex items-center justify-between text-sm transition-all animate-fade-in">
+            <!-- 批次操作工具列 (常態顯示，預設禁用按鈕) -->
+            <div id="dashboard-batch-bar" class="mb-4 p-3 bg-slate-100/90 border border-slate-200 rounded-xl flex items-center justify-between text-sm transition-all">
                 <div class="flex items-center gap-3">
                     <label class="inline-flex items-center gap-1.5 cursor-pointer font-bold text-slate-700">
                         <input type="checkbox" id="select-all-checkbox" onchange="voyaDrive.toggleSelectAll(this.checked)" class="rounded border-slate-300 text-slate-800 focus:ring-slate-700">
                         <span>全選 / 反選</span>
                     </label>
-                    <span id="selected-count-label" class="text-xs text-slate-800 font-bold bg-white px-2.5 py-0.5 rounded-full border border-slate-200">已選擇 0 個行程</span>
+                    <span id="selected-count-label" class="text-xs text-slate-500 font-bold bg-white px-2.5 py-0.5 rounded-full border border-slate-200">請勾選行程進行批次操作</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="voyaDrive.downloadSelectedJson()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm">
+                    <button id="batch-download-btn" onclick="voyaDrive.downloadSelectedJson()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm opacity-50 pointer-events-none cursor-not-allowed" disabled>
                         <i class="fa-solid fa-file-code"></i> 下載所選 YAML
                     </button>
-                    <button onclick="voyaDrive.exportSelectedPdf()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm">
+                    <button id="batch-export-btn" onclick="voyaDrive.exportSelectedPdf()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm opacity-50 pointer-events-none cursor-not-allowed" disabled>
                         <i class="fa-solid fa-file-pdf"></i> 匯出所選 PDF
                     </button>
-                    <button onclick="voyaDrive.deleteSelectedItineraries()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm">
+                    <button id="batch-delete-btn" onclick="voyaDrive.deleteSelectedItineraries()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm opacity-50 pointer-events-none cursor-not-allowed" disabled>
                         <i class="fa-solid fa-trash-can"></i> 刪除所選行程
                     </button>
                 </div>

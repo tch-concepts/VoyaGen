@@ -274,7 +274,9 @@ async function renderDashboard() {
                         <div class="flex items-center justify-between gap-2 mb-2">
                             <div class="flex items-center gap-2.5 min-w-0">
                                 <input type="checkbox" class="dashboard-checkbox rounded border-slate-300 text-sky-600 focus:ring-sky-500 w-4 h-4 cursor-pointer shrink-0" data-file-id="${file.id}" onchange="voyaDrive.onCheckboxChange()">
-                                <h3 class="font-bold text-slate-800 text-base truncate" title="${file.name.replace(/\.(json|yaml|yml)$/i, '')}">${file.name.replace(/\.(json|yaml|yml)$/i, '')}</h3>
+                                <h3 class="font-bold text-slate-800 text-base truncate" title="${file.name.replace(/\.(json|yaml|yml)$/i, '')}">
+                                    <a href="${shareUrl}" class="hover:text-blue-600 transition-colors cursor-pointer">${file.name.replace(/\.(json|yaml|yml)$/i, '')}</a>
+                                </h3>
                             </div>
                         </div>
                         <p class="text-xs text-slate-400 mb-4 flex items-center gap-1 pl-6">
@@ -334,15 +336,39 @@ async function renderDashboard() {
 function onCheckboxChange() {
     const checkboxes = Array.from(document.querySelectorAll('.dashboard-checkbox'));
     const checkedCount = checkboxes.filter(cb => cb.checked).length;
-    const batchBar = document.getElementById('dashboard-batch-bar');
     const countLabel = document.getElementById('selected-count-label');
     const selectAllCb = document.getElementById('select-all-checkbox');
+    
+    const btns = [
+        document.getElementById('batch-download-btn'),
+        document.getElementById('batch-export-btn'),
+        document.getElementById('batch-delete-btn')
+    ];
 
     if (checkedCount > 0) {
-        if (batchBar) batchBar.classList.remove('hidden');
-        if (countLabel) countLabel.innerText = `已選擇 ${checkedCount} 個行程`;
+        if (countLabel) {
+            countLabel.innerText = `已選擇 ${checkedCount} 個行程`;
+            countLabel.classList.remove('text-slate-500');
+            countLabel.classList.add('text-slate-800');
+        }
+        btns.forEach(btn => {
+            if (btn) {
+                btn.removeAttribute('disabled');
+                btn.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+            }
+        });
     } else {
-        if (batchBar) batchBar.classList.add('hidden');
+        if (countLabel) {
+            countLabel.innerText = `請勾選行程進行批次操作`;
+            countLabel.classList.remove('text-slate-800');
+            countLabel.classList.add('text-slate-500');
+        }
+        btns.forEach(btn => {
+            if (btn) {
+                btn.setAttribute('disabled', 'true');
+                btn.classList.add('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+            }
+        });
     }
 
     if (selectAllCb) {
