@@ -37,7 +37,7 @@ function navigateTo(routeName) {
     } else if (targetRoute === 'generator') {
         document.title = "VoyaGen - AI 旅遊規劃師";
     } else if (targetRoute === 'about') {
-        document.title = "VoyaGen - 關於本程式";
+        document.title = "VoyaGen";
     }
 
     // 若非行程檢視頁，關閉 AI 對話助理側邊欄並重置主題
